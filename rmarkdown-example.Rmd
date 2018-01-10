@@ -1,0 +1,31 @@
+---
+title: "Untitled"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+	echo = TRUE,
+	message = FALSE,
+	warning = FALSE
+)
+```
+
+## R Markdown
+
+Below is a line chart of Canada data!
+
+```{r}
+library("tidyverse")
+library("readxl")
+tidied_world_data <- read_csv("data-raw/tidied-databank-data.csv")
+
+tidied_world_data %>%
+  filter(country.name == "Canada") %>%
+  ggplot(aes(x = year,
+             y = databank.value,
+             color = series.name)) +
+  geom_line() +
+  theme(legend.position = "bottom")
+```
+
